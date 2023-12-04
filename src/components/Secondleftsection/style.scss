@@ -6,3 +6,16 @@
     text-align: right;
   }
 }
+.eyediv {
+  @media (orientation: portrait) {
+    text-align: center;
+  }
+  @media (orientation: landscape) {
+    text-align: right;
+  }
+}
+.secondparatext {
+  @media (orientation: landscape) {
+    justify-content: right;
+  }
+}

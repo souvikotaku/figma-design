@@ -1,0 +1,8 @@
+.carouseldiv {
+  @media (orientation: landscape) {
+    padding-right: 0;
+    .slick-slider {
+      padding-right: 0;
+    }
+  }
+}

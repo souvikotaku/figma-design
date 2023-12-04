@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Cohorts from "../../assets/cohorts.png";
 import "./style.scss";
+import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 
 const Secondleftsection = () => {
   return (
@@ -33,7 +34,7 @@ const Secondleftsection = () => {
           </div>
         </div>
         <div
-          className="col-md-6"
+          className="col-md-6 secondparatext"
           style={{
             alignItems: "center",
             display: "flex",
@@ -52,6 +53,9 @@ const Secondleftsection = () => {
                 marginTop: "-10%",
               }}
             >
+              <div className="eyediv">
+                <RemoveRedEyeOutlinedIcon style={{ color: "white" }} />
+              </div>
               <h5
                 className="card-title paradesc"
                 style={{

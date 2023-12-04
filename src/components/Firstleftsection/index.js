@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Card1 from "../../assets/card1.png";
 import Card2 from "../../assets/card2.png";
 import Card3 from "../../assets/card3.png";
+import "./style.scss";
 
 const Firstleftsection = () => {
   const settings = {
@@ -73,7 +74,7 @@ const Firstleftsection = () => {
           </div>
         </div>
 
-        <div className="col-md-6 row">
+        <div className="col-md-6 row carouseldiv">
           <Slider {...settings}>
             <div className="col-md-4">
               <div

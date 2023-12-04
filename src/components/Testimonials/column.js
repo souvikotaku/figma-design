@@ -30,7 +30,13 @@ export default class Column extends React.Component {
     return (
       <>
         <Container className="desktesticolumn">
-          <Title>{this.props.column.title}</Title>
+          <Title>
+            {this.props.column.title}
+            <span>
+              <hr></hr>
+            </span>
+          </Title>
+
           <Droppable
             droppableId={this.props.column.id}
             type="TASK"
@@ -61,6 +67,7 @@ export default class Column extends React.Component {
           >
             {this.props.column.title}
           </Title>
+
           {/* <Droppable
             droppableId={this.props.column.id}
             type="TASK"
