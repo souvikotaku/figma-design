@@ -1,6 +1,5 @@
 import logo from "./logo.svg";
 import "./App.css";
-import "./appstyles.scss";
 import Firstleftsection from "./components/Firstleftsection";
 import Secondleftsection from "./components/Secondleftsection";
 import Testimonials from "./components/Testimonials";
