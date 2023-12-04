@@ -1,155 +1,106 @@
 import React from "react";
-import "./style.scss";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Card1 from "../../assets/card1.png";
-import Card2 from "../../assets/card2.png";
-import Card3 from "../../assets/card3.png";
+import ReactDOM from "react-dom";
+import "@atlaskit/css-reset";
+import { DragDropContext } from "react-beautiful-dnd";
+import styled from "styled-components";
+import "./style.css";
 
-const Testimonials = () => {
-  const settings = {
-    // dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    arrows: false,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 700,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+import initialData from "./initial-data";
+import Column from "./column";
+
+const Container = styled.div`
+  display: flex;
+`;
+
+class Testimonials extends React.Component {
+  state = initialData;
+
+  onDragEnd = (result) => {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const start = this.state.columns[source.droppableId];
+    const finish = this.state.columns[destination.droppableId];
+
+    if (start === finish) {
+      const newTaskIds = Array.from(start.taskIds);
+      newTaskIds.splice(source.index, 1);
+      newTaskIds.splice(destination.index, 0, draggableId);
+
+      const newColumn = {
+        ...start,
+        taskIds: newTaskIds,
+      };
+
+      const newState = {
+        ...this.state,
+        columns: {
+          ...this.state.columns,
+          [newColumn.id]: newColumn,
         },
+      };
+
+      this.setState(newState);
+      return;
+    }
+
+    // Moving from one list to another
+    const startTaskIds = Array.from(start.taskIds);
+    startTaskIds.splice(source.index, 1);
+    const newStart = {
+      ...start,
+      taskIds: startTaskIds,
+    };
+
+    const finishTaskIds = Array.from(finish.taskIds);
+    finishTaskIds.splice(destination.index, 0, draggableId);
+    const newFinish = {
+      ...finish,
+      taskIds: finishTaskIds,
+    };
+
+    const newState = {
+      ...this.state,
+      columns: {
+        ...this.state.columns,
+        [newStart.id]: newStart,
+        [newFinish.id]: newFinish,
       },
-    ],
-    adaptiveHeight: false,
-    autoplay: true,
-    autoplaySpeed: 1500,
+    };
+    this.setState(newState);
   };
-  return (
-    <div>
-      <div
-        className="row"
+
+  render() {
+    return (
+      <DragDropContext
+        onDragEnd={this.onDragEnd}
         style={{
-          justifyContent: "space-evenly",
+          marginTop: "-5%",
         }}
       >
-        <div className="col-md-4">
-          <div
-            className="card"
-            style={{
-              border: "none",
-              background: "transparent",
-            }}
-          >
-            <div className="card-body">
-              <h5
-                className="card-title"
-                style={{
-                  textAlign: "left",
-                  color: "white",
-                  //   fontSize: "31px",
-                }}
-              >
-                Get notified when a highly correlated whale makes a move
-              </h5>
-              <p
-                className="card-text"
-                style={{
-                  textAlign: "left",
-                  color: "white",
-                  fontSize: "16px",
-                  lineHeight: "19.2px",
-                }}
-              >
-                Find out when a certain whale moves more than any preset amount
-                on-chain or when a dormant whale you care about becomes active.
-              </p>
-            </div>
-          </div>
-        </div>
+        <Container>
+          {this.state.columnOrder.map((columnId) => {
+            const column = this.state.columns[columnId];
+            const tasks = column.taskIds.map(
+              (taskId) => this.state.tasks[taskId]
+            );
 
-        <div className="col-md-6 row">
-          <Slider {...settings}>
-            <div className="col-md-4">
-              <div
-                className="card"
-                style={{
-                  border: "none",
-                  background: "transparent",
-                }}
-              >
-                <div
-                  className="card-body"
-                  style={{
-                    padding: 0,
-                  }}
-                >
-                  <img src={Card1} style={{ width: "100%" }} />
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div
-                className="card"
-                style={{
-                  border: "none",
-                  background: "transparent",
-                }}
-              >
-                <div
-                  className="card-body"
-                  style={{
-                    padding: 0,
-                  }}
-                >
-                  <img src={Card2} style={{ width: "100%" }} />
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div
-                className="card"
-                style={{
-                  border: "none",
-                  background: "transparent",
-                }}
-              >
-                <div
-                  className="card-body"
-                  style={{
-                    padding: 0,
-                  }}
-                >
-                  <img src={Card3} style={{ width: "100%" }} />
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div
-                className="card"
-                style={{
-                  border: "none",
-                  background: "transparent",
-                }}
-              >
-                <div
-                  className="card-body"
-                  style={{
-                    padding: 0,
-                  }}
-                >
-                  <img src={Card3} style={{ width: "100%" }} />
-                </div>
-              </div>
-            </div>
-          </Slider>
-        </div>
-      </div>
-    </div>
-  );
-};
+            return <Column key={column.id} column={column} tasks={tasks} />;
+          })}
+        </Container>
+      </DragDropContext>
+    );
+  }
+}
 
 export default Testimonials;

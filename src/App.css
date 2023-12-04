@@ -24,6 +24,14 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.mainapp div:nth-child(3) > div {
+  width: 100% !important;
+  border: none;
+  margin-top: -5%;
+}
+.mainapp div:nth-child(3) > div > h3 {
+  color: white;
+}
 
 .App-link {
   color: #61dafb;

@@ -1,15 +1,17 @@
 import logo from "./logo.svg";
 import "./App.css";
+import "./appstyles.scss";
 import Firstleftsection from "./components/Firstleftsection";
 import Secondleftsection from "./components/Secondleftsection";
+import Testimonials from "./components/Testimonials";
 
 function App() {
   return (
     <div
       className="App row"
-      style={{
-        height: "100vh",
-      }}
+      // style={{
+      //   height: "100vh",
+      // }}
     >
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -25,9 +27,10 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <div className="col-md-9">
+      <div className="col-md-9 mainapp">
         <Firstleftsection />
         <Secondleftsection />
+        <Testimonials />
       </div>
       <div className="col-md-3 shadow p-3 bg-white">hello</div>
     </div>

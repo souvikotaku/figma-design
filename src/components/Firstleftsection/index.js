@@ -50,7 +50,7 @@ const Firstleftsection = () => {
                 style={{
                   textAlign: "left",
                   color: "white",
-                  //   fontSize: "31px",
+                  fontSize: "20px",
                 }}
               >
                 Get notified when a highly correlated whale makes a move

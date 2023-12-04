@@ -56,10 +56,10 @@ const Secondleftsection = () => {
                 style={{
                   textAlign: "right",
                   color: "white",
-                  //   fontSize: "31px",
+                  fontSize: "20px",
                 }}
               >
-                Get notified when a highly correlated whale makes a move
+                Watch what the whales are doing
               </h5>
               <p
                 className="card-text"
@@ -70,8 +70,8 @@ const Secondleftsection = () => {
                   lineHeight: "19.2px",
                 }}
               >
-                Find out when a certain whale moves more than any preset amount
-                on-chain or when a dormant whale you care about becomes active.
+                All whales are not equal. Know exactly what the whales impacting
+                YOUR portfolio are doing.
               </p>
               {/* <a href="#" className="btn btn-primary">
             Go somewhere
