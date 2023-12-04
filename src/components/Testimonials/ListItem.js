@@ -40,15 +40,20 @@ const DragItem = styled.div`
 
 const lorem = new LoremIpsum();
 
-const ListItem = ({ item, provided, snapshot }) => {
+const ListItem = ({ item, provided }) => {
   const randomHeader = useMemo(() => lorem.generateWords(5), []);
 
   return (
     <DragItem
-      ref={provided.innerRef}
-      snapshot={snapshot}
-      {...provided.draggableProps}
-      {...provided.dragHandleProps}
+      style={{
+        background: "transparent",
+        border: "none",
+        boxShadow: "none",
+      }}
+      ref={provided?.innerRef}
+      //   snapshot={snapshot}
+      {...provided?.draggableProps}
+      {...provided?.dragHandleProps}
     >
       {/* <CardHeader>{randomHeader}</CardHeader>
       <span>{item.id}</span>
@@ -56,7 +61,12 @@ const ListItem = ({ item, provided, snapshot }) => {
         <span>{item.content}</span>
        
       </CardFooter> */}
-      <img src={item?.image} />
+      <img
+        src={item?.image}
+        style={{
+          width: "100%",
+        }}
+      />
     </DragItem>
   );
 };

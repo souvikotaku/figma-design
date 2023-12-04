@@ -1,0 +1,8 @@
+.paradesc {
+  @media (orientation: portrait) {
+    text-align: center;
+  }
+  @media (orientation: landscape) {
+    text-align: right;
+  }
+}

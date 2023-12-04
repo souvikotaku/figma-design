@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Cohorts from "../../assets/cohorts.png";
+import "./style.scss";
 
 const Secondleftsection = () => {
   return (
@@ -52,9 +53,9 @@ const Secondleftsection = () => {
               }}
             >
               <h5
-                className="card-title"
+                className="card-title paradesc"
                 style={{
-                  textAlign: "right",
+                  //   textAlign: "right",
                   color: "white",
                   fontSize: "20px",
                 }}
@@ -62,9 +63,9 @@ const Secondleftsection = () => {
                 Watch what the whales are doing
               </h5>
               <p
-                className="card-text"
+                className="card-text paradesc"
                 style={{
-                  textAlign: "right",
+                  //   textAlign: "right",
                   color: "white",
                   fontSize: "16px",
                   lineHeight: "19.2px",

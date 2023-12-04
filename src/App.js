@@ -4,6 +4,7 @@ import "./appstyles.scss";
 import Firstleftsection from "./components/Firstleftsection";
 import Secondleftsection from "./components/Secondleftsection";
 import Testimonials from "./components/Testimonials";
+import Rightsection from "./components/Rightsection";
 
 function App() {
   return (
@@ -32,7 +33,9 @@ function App() {
         <Secondleftsection />
         <Testimonials />
       </div>
-      <div className="col-md-3 shadow p-3 bg-white">hello</div>
+      <div className="col-md-3 shadow p-3 bg-white">
+        <Rightsection />
+      </div>
     </div>
   );
 }

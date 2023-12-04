@@ -24,6 +24,9 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.mainapp {
+  padding-top: 2%;
+}
 .mainapp div:nth-child(3) > div {
   width: 100% !important;
   border: none;

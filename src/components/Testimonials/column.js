@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Task from "./task.js";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import ListItem from "./ListItem";
+import "./styles.scss";
 
 const Container = styled.div`
   margin: 8px;
@@ -27,40 +28,79 @@ const TaskList = styled.div`
 export default class Column extends React.Component {
   render() {
     return (
-      <Container>
-        <Title>{this.props.column.title}</Title>
-        <Droppable
-          droppableId={this.props.column.id}
-          type="TASK"
-          direction="horizontal"
-        >
-          {(provided, snapshot) => (
-            // <TaskList
-            //   ref={provided.innerRef}
-            //   {...provided.droppableProps}
-            //   isDraggingOver={snapshot.isDraggingOver}
-            // >
-            //   {this.props.tasks.map((task, index) => (
-            //     <Task key={task.id} task={task} index={index} />
-            //   ))}
-            //   {provided.placeholder}
-            // </TaskList>
-            <div {...provided.droppableProps} ref={provided.innerRef}>
-              {this.props.tasks.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided, snapshot) => (
-                    <ListItem
-                      provided={provided}
-                      snapshot={snapshot}
-                      item={item}
-                    />
-                  )}
-                </Draggable>
-              ))}
-            </div>
-          )}
-        </Droppable>
-      </Container>
+      <>
+        <Container className="desktesticolumn">
+          <Title>{this.props.column.title}</Title>
+          <Droppable
+            droppableId={this.props.column.id}
+            type="TASK"
+            direction="horizontal"
+          >
+            {(provided, snapshot) => (
+              <div {...provided.droppableProps} ref={provided?.innerRef}>
+                {this.props.tasks.map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <ListItem
+                        provided={provided}
+                        // snapshot={snapshot}
+                        item={item}
+                      />
+                    )}
+                  </Draggable>
+                ))}
+              </div>
+            )}
+          </Droppable>
+        </Container>
+        <Container className="mobiletesticolumn">
+          <Title
+            style={{
+              marginTop: "10%",
+            }}
+          >
+            {this.props.column.title}
+          </Title>
+          {/* <Droppable
+            droppableId={this.props.column.id}
+            type="TASK"
+            direction="vertical"
+          >
+            {(provided, snapshot) => (
+              // <TaskList
+              //   ref={provided.innerRef}
+              //   {...provided.droppableProps}
+              //   isDraggingOver={snapshot.isDraggingOver}
+              // >
+              //   {this.props.tasks.map((task, index) => (
+              //     <Task key={task.id} task={task} index={index} />
+              //   ))}
+              //   {provided.placeholder}
+              // </TaskList>
+              <div {...provided.droppableProps} ref={provided.innerRef}>
+                {this.props.tasks.map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <ListItem
+                        provided={provided}
+                        // snapshot={snapshot}
+                        item={item}
+                      />
+                    )}
+                  </Draggable>
+                ))}
+              </div>
+            )}
+          </Droppable> */}
+          {this.props.tasks.map((item, index) => (
+            <ListItem
+              // provided={provided}
+              // snapshot={snapshot}
+              item={item}
+            />
+          ))}
+        </Container>
+      </>
     );
   }
 }
